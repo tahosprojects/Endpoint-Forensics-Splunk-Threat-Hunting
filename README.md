@@ -38,9 +38,9 @@ The objective of this lab was to gain hands-on experience with endpoint visibili
 
 ---
 
-## Lab Architecture
+## Lab Environment
 
-The lab consisted of:
+The environment consisted of:
 
 * Local Velociraptor Server
 * AWS EC2 Windows Server 2022 Endpoint
@@ -55,7 +55,7 @@ The Windows endpoint was enrolled into Velociraptor and configured to forward lo
 
 The Windows Server endpoint was successfully enrolled into Velociraptor and maintained an active connection to the server.
 
-![Velociraptor Client Enrollment](velociraptor-client-enrolled.png)
+![Velociraptor Client Enrollment](images/velociraptor-client-enrolled.png)
 
 This provided remote visibility into endpoint activity and allowed forensic artifacts to be collected directly from the system.
 
@@ -65,7 +65,7 @@ This provided remote visibility into endpoint activity and allowed forensic arti
 
 Velociraptor was used to execute the `Windows.System.Pslist` artifact to collect process information from the endpoint.
 
-![Windows.System.Pslist Hunt](velociraptor-pslist-hunt.png)
+![Windows.System.Pslist Hunt](images/velociraptor-pslist-hunt.png)
 
 The artifact returned information including:
 
@@ -83,7 +83,7 @@ This provided a baseline view of active processes on the endpoint.
 
 A Velociraptor notebook was used to analyze process relationships using VQL.
 
-![Process Hierarchy Analysis](vql-process-hierarchy.png)
+![Process Hierarchy Analysis](images/vql-process-hierarchy.png)
 
 Parent-child process relationships were examined to understand normal operating system behavior and identify potentially suspicious execution chains.
 
@@ -109,11 +109,11 @@ PowerShell Operational logs were forwarded into Splunk and analyzed using Event 
 sourcetype="WinEventLog:Microsoft-Windows-PowerShell/Operational" EventCode=4104
 ```
 
-![PowerShell Event ID 4104](splunk-powershell-4104.png)
+![PowerShell Event ID 4104](images/splunk-powershell-4104.png)
 
-Event ID 4104 captures PowerShell Script Block Logging, which allows analysts to review executed PowerShell commands and identify potentially malicious activity.
+Event ID 4104 captures PowerShell Script Block Logging, allowing analysts to review executed PowerShell commands and identify potentially suspicious activity.
 
-Examples observed during the lab included administrative commands and remote execution activity generated from Velociraptor collections.
+This telemetry is commonly used during investigations involving malicious scripts, administrative abuse, persistence mechanisms, and attacker tradecraft.
 
 ---
 
@@ -129,7 +129,7 @@ Examples observed during the lab included administrative commands and remote exe
 
 ---
 
-## What I Learned
+## Key Takeaways
 
 This project strengthened my understanding of endpoint visibility and incident investigation workflows. By combining Velociraptor's artifact collection capabilities with Splunk's search and analytics features, I gained hands-on experience identifying and analyzing endpoint activity from both an EDR and SIEM perspective.
 
